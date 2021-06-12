@@ -4,13 +4,18 @@ from easy_thumbnails.fields import ThumbnailerImageField
 # Create your models here.
 class ProductImage(models.Model):
     alt = models.TextField()
-    file = ThumbnailerImageField(uploads_to="products")
+    file = ThumbnailerImageField(upload_to="products")
     variation = models.ForeignKey("Variation",on_delete=models.CASCADE,related_name="image")
+
+class Category(models.Model):
+    name = models.CharField(max_length=120)
+    description = models.TextField()
 
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField()
+    category = models.ManyToManyField(Category)
     created_At = models.DateTimeField(auto_now_add=True)
     updated_At = models.DateTimeField(auto_now=True)
 
