@@ -23,6 +23,13 @@ class Product(models.Model):
     created_At = models.DateTimeField(auto_now_add=True)
     updated_At = models.DateTimeField(auto_now=True)
 
+    def get_category(self):
+        categories = self.category.all().values("name")
+        result = []
+        for i in categories:
+            result.append(i.get("name"))
+        return " , ".join(result)
+
     def __str__(self):
         return self.name
 

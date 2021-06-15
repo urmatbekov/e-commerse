@@ -14,6 +14,9 @@ class User(AbstractUser):
 class District(models.Model):
     name = models.CharField(max_length=120)
 
+    def __str__(self):
+        return self.name
+
 
 class ShippingAddress(models.Model):
     district = models.ForeignKey(
@@ -23,6 +26,9 @@ class ShippingAddress(models.Model):
     street = models.CharField(max_length=120)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return "{} Обл, {} .р, {} .г, ул. {}.".format(self.district, self.region,self.city, self.street)
+
 
 class BillingAddress(models.Model):
     district = models.ForeignKey(
@@ -31,3 +37,6 @@ class BillingAddress(models.Model):
     city = models.CharField(max_length=120)
     street = models.CharField(max_length=120)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return "{} Обл, {} .р, {} .г, ул. {}.".format(self.district, self.region,self.city, self.street)

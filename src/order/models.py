@@ -8,31 +8,44 @@ from user.models import BillingAddress, ShippingAddress
 User = get_user_model()
 
 # Create your models here.
+
+
 class Cart(models.Model):
-    total_price = models.DecimalField(max_digits=11,decimal_places=2)
+    total_price = models.DecimalField(max_digits=11, decimal_places=2)
     active = models.BooleanField(default=True)
+    created_At = models.DateTimeField(auto_now_add=True)
+    updated_At = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return str(self.pk)
+
 
 class CartItem(models.Model):
-    product = models.ForeignKey(Product,on_delete=models.SET_NULL,null=True)
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     quantity = models.SmallIntegerField()
-    price = models.DecimalField(max_digits=11,decimal_places=2)
-    line_price = models.DecimalField(max_digits=11,decimal_places=2)
-    cart = models.ForeignKey(Cart,on_delete=models.CASCADE)
+    price = models.DecimalField(max_digits=11, decimal_places=2)
+    line_price = models.DecimalField(max_digits=11, decimal_places=2)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.product.name
 
 
 ORDER_STATUS = [
-    ('created',"Created"),
-    ('completed',"Completed"),
-    ('refused',"Refused")
+    ('created', "Created"),
+    ('completed', "Completed"),
+    ('refused', "Refused")
 ]
 
 
 class Order(models.Model):
-    cart = models.OneToOneField(Cart,on_delete=models.CASCADE)
-    user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
-    shipping_address = models.ForeignKey(ShippingAddress,on_delete=models.SET_NULL,null=True)
-    billing_address = models.ForeignKey(BillingAddress,on_delete=models.SET_NULL,null=True)
-    status = models.CharField(max_length=10,choices=ORDER_STATUS)
-    
+    cart = models.OneToOneField(Cart, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    shipping_address = models.ForeignKey(
+        ShippingAddress, on_delete=models.SET_NULL, null=True)
+    billing_address = models.ForeignKey(
+        BillingAddress, on_delete=models.SET_NULL, null=True)
+    status = models.CharField(max_length=10, choices=ORDER_STATUS)
 
-
+    def __str__(self):
+        return self.user.username + " " + str(self.cart.total_price)
