@@ -46,6 +46,8 @@ class Order(models.Model):
     billing_address = models.ForeignKey(
         BillingAddress, on_delete=models.SET_NULL, null=True)
     status = models.CharField(max_length=10, choices=ORDER_STATUS)
+    created_At = models.DateTimeField(auto_now_add=True)
+    updated_At = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.user.username + " " + str(self.cart.total_price)
