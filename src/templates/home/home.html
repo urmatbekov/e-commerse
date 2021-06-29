@@ -12,9 +12,14 @@
                         <div class="card h-100">
                             <img src="{{product.variations.first.image.first.file.product_list.url}}" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h3 class="card-title">{{product.name}}</h3>
-                                <p class="card-text">{{product.description|slice:80}}</p>
-                                <a href="#" class="btn btn-primary">more...</a>
+                                <h3 class="card-title fs-4">{{product.name}}</h3>
+                                <p class="card-text">{{product.description|slice:30}}</p>
+                                <p class="text-danger fw-bold">
+                                    {{product.variations.first.sale_price}} c/ 
+                                    <span class="text-decoration-line-through fw-normal text-muted ">
+                                    {{product.variations.first.price}} c</span>
+                                </p>
+                                <a href="#" class="btn btn-primary">More...</a>
                             </div>
                         </div>
                     </li>
