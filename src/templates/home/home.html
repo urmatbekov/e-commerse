@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block container %}
+    {% include 'home/slider.html' %}
+    <h1 class="text-center">Welcom</h1>
+    {% for category in categories %}
+        <section>
+            <h2 title="{{category.description}}">{{category.name}}</h2>
+            <ul class="row ps-0 ms-0 list-unstyled">
+                {% for product in category.product_set.all %}
+                    <li class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="card h-100">
+                            <img src="{{product.variations.first.image.first.file.product_list.url}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h3 class="card-title">{{product.name}}</h3>
+                                <p class="card-text">{{product.description|slice:80}}</p>
+                                <a href="#" class="btn btn-primary">more...</a>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        <section>
+    {% endfor %}
+    
+{% endblock container %}

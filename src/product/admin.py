@@ -12,7 +12,7 @@ class InlineVariation(admin.StackedInline):
 
 @admin.register(Product)
 class AdminProduct(admin.ModelAdmin):
-    list_display = ["name","description","get_category"]
+    list_display = ["name","description"]
     inlines = [InlineVariation]
 
 ### VARITION
@@ -29,7 +29,7 @@ class AdminVariation(admin.ModelAdmin):
 
 ### CATEGORY
 class InlineProduct(admin.TabularInline):
-    model = Product.category.through
+    model = Product
     extra = 0
 
 @admin.register(Category)

@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     "easy_thumbnails",
     "order",
     "user",
-    "product"
+    "product",
+    "home"
 ]
 
 MIDDLEWARE = [
@@ -138,7 +139,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 THUMBNAIL_ALIASES = {
     '':{
-        'product_list':{'size':(300,300),'crop':"smart","upscale":True}
+        'product_list':{'size':(300,300),'crop':"smart","upscale":True},
+        'slider':{'size':(1300,600),'crop':"smart","upscale":True}
     }
 }
 
