@@ -33,6 +33,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jet.dashboard',
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -140,9 +142,51 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 THUMBNAIL_ALIASES = {
     '':{
         'product_list':{'size':(300,300),'crop':"smart","upscale":True},
+        'admin_preview':{'size':(150,150),'crop':"smart","upscale":True},
+        'admin_preview_icon':{'size':(100,100),'crop':"smart","upscale":True},
         'slider':{'size':(1300,600),'crop':"smart","upscale":True}
     }
 }
 
 AUTH_USER_MODEL = 'user.User'
 
+
+### JET ADMIN
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+JET_THEMES = [
+    {
+        'theme': 'default', # theme folder name
+        'color': '#47bac1', # color of the theme's button in user menu
+        'title': 'Default' # theme title
+    },
+    {
+        'theme': 'green',
+        'color': '#44b78b',
+        'title': 'Green'
+    },
+    {
+        'theme': 'light-green',
+        'color': '#2faa60',
+        'title': 'Light Green'
+    },
+    {
+        'theme': 'light-violet',
+        'color': '#a464c4',
+        'title': 'Light Violet'
+    },
+    {
+        'theme': 'light-blue',
+        'color': '#5EADDE',
+        'title': 'Light Blue'
+    },
+    {
+        'theme': 'light-gray',
+        'color': '#222',
+        'title': 'Light Gray'
+    }
+]
+
+JET_DEFAULT_THEME = 'light-gray'
+# JET_SIDE_MENU_COMPACT = True

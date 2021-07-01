@@ -1,9 +1,10 @@
 from django.contrib import admin
 from .models import Product, Variation,Category,ProductImage
+from jet.admin import CompactInline
 # Register your models here.
 
 ### PRODUCT
-class InlineVariation(admin.StackedInline):
+class InlineVariation(CompactInline):
     model = Variation
     min_num = 1
     extra = 0
@@ -16,10 +17,12 @@ class AdminProduct(admin.ModelAdmin):
     inlines = [InlineVariation]
 
 ### VARITION
-class InlineProductImage(admin.TabularInline):
+class InlineProductImage(CompactInline):
     model = ProductImage
+    fields = ["image","file","alt"]
     min_num = 1
     extra = 0
+    readonly_fields = ["image"]
 
 @admin.register(Variation)
 class AdminVariation(admin.ModelAdmin):
@@ -40,5 +43,7 @@ class AdminCategory(admin.ModelAdmin):
 ### IMAGE
 @admin.register(ProductImage)
 class AdminProductImage(admin.ModelAdmin):
-    list_display = ["file","alt"]
+    fields = ["image_icon","alt","variation"]
+    list_display = ["id","image_icon","file","alt"]
+    readonly_fields = ["image_icon"]
 

@@ -7,10 +7,10 @@
     <div class="carousel-inner">
         {% for slide in slider %}
             <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                <img src="{{slide.image.slider.url}}" class="d-block w-100" alt="{{slide.description}}">
+                <img src="{{slide.image.slider.url}}" class="d-block slider-img w-100" alt="{{slide.description}}">
                 <div class="carousel-caption d-none d-md-block">
-                    <h5>{{slide.title}}</h5>
-                    <p>{{slide.description}}</p>
+                    <h3>{{slide.title}}</h3>
+                    <p class="fs-4 text-shadow">{{slide.description}}</p>
                 </div>
             </div>
         {% endfor %}

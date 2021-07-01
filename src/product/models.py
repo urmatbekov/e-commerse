@@ -1,5 +1,6 @@
 from django.db import models
 from easy_thumbnails.fields import ThumbnailerImageField
+from django.utils.safestring import mark_safe
 
 # Create your models here.
 class ProductImage(models.Model):
@@ -7,7 +8,21 @@ class ProductImage(models.Model):
     file = ThumbnailerImageField(upload_to="products")
     variation = models.ForeignKey("Variation",on_delete=models.CASCADE,related_name="image")
     def __str__(self):
-        return self.file.url
+        return self.alt
+
+
+    def image(self):
+        return mark_safe('<a href="{0}" target="_blank">'
+                        '<img src="{1}" width="150" height="150" />'
+                        '</a>'.format(self.file.url, self.file['admin_preview'].url)
+                         )
+    def image_icon(self):
+        return mark_safe('<a href="{0}" target="_blank">'
+                        '<img src="{1}" width="100" height="100" />'
+                        '</a>'.format(self.file.url, self.file['admin_preview_icon'].url)
+                         )
+
+
 
 class Category(models.Model):
     name = models.CharField(max_length=120)
