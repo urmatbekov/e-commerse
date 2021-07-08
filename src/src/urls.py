@@ -18,10 +18,13 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 from home.views import home
+from product.views import product_list,product_detail
 
 urlpatterns = [
     path('jet/', include('jet.urls', 'jet')),
     path('jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     path('admin/', admin.site.urls),
-    path("",home)
+    path("product/",product_list,name="product_list"),
+    path("product/<int:id>/",product_detail,name="product_detail"),
+    path("",home,name="home_page")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

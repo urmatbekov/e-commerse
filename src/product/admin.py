@@ -31,9 +31,10 @@ class AdminVariation(admin.ModelAdmin):
 
 
 ### CATEGORY
-class InlineProduct(admin.TabularInline):
+class InlineProduct(CompactInline):
     model = Product
     extra = 0
+    show_change_link = True
 
 @admin.register(Category)
 class AdminCategory(admin.ModelAdmin):

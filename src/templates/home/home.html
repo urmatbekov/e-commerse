@@ -5,10 +5,10 @@
     <h1 class="text-center text-decoration-underline mt-3">Welcom</h1>
     {% for category in categories %}
         <section>
-            <h2 title="{{category.description}}">{{category.name}}</h2>
+            <h2 class="mb-4" title="{{category.description}}">{{category.name}}</h2>
             <ul class="row ps-0 ms-0 list-unstyled">
                 {% for product in category.product_set.all %}
-                    <li class="col-xl-3 col-lg-4 col-md-6">
+                    <li class="col-xl-3 col-lg-4 col-md-6 mb-4">
                         <div class="card h-100">
                             <img src="{{product.variations.first.image.first.file.product_list.url}}" class="card-img-top" alt="...">
                             <div class="card-body">
@@ -19,7 +19,7 @@
                                     <span class="text-decoration-line-through fw-normal text-muted ">
                                     {{product.variations.first.price}} c</span>
                                 </p>
-                                <a href="#" class="btn btn-primary">More...</a>
+                                <a href="{{product.get_absolute_url}}" class="btn btn-primary">More...</a>
                             </div>
                         </div>
                     </li>

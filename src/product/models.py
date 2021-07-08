@@ -1,6 +1,8 @@
 from django.db import models
 from easy_thumbnails.fields import ThumbnailerImageField
 from django.utils.safestring import mark_safe
+from django.urls import reverse
+
 
 # Create your models here.
 class ProductImage(models.Model):
@@ -38,6 +40,13 @@ class Product(models.Model):
     created_At = models.DateTimeField(auto_now_add=True)
     updated_At = models.DateTimeField(auto_now=True)
 
+    def get_absolute_url(self):
+        return reverse('product_detail', kwargs={'id': self.id})
+
+    # def get_absolute_url(self):
+    #     return "/product/" + str(self.id)
+    
+
     def __str__(self):
         return self.name
 
@@ -49,6 +58,9 @@ class Variation(models.Model):
     description = models.TextField()
     created_At = models.DateTimeField(auto_now_add=True)
     updated_At = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse('product_detail', kwargs={'id': self.product.id}) + "?variation="+str(self.id)
 
     def __str__(self):
         return self.name
