@@ -29,8 +29,28 @@ class ProductImage(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=120)
     description = models.TextField()
+    image = ThumbnailerImageField(upload_to="category",null=True)
+
+    def image_tag(self):
+        if self.image:
+            return mark_safe('<a href="{0}" target="_blank">'
+                            '<img src="{1}" width="150" height="150" />'
+                            '</a>'.format(self.image.url, self.image['admin_preview'].url)
+                            )
+        return "-"
+    def image_icon(self):
+        if self.image:
+            return mark_safe('<a href="{0}" target="_blank">'
+                            '<img src="{1}" width="100" height="100" />'
+                            '</a>'.format(self.image.url, self.image['admin_preview_icon'].url)
+                            )
+        return "-"
+
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('product_list') + "?category="+str(self.id)
 
 
 class Product(models.Model):

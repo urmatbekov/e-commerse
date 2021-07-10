@@ -144,7 +144,8 @@ THUMBNAIL_ALIASES = {
         'product_list':{'size':(300,300),'crop':"smart","upscale":True},
         'admin_preview':{'size':(150,150),'crop':"smart","upscale":True},
         'admin_preview_icon':{'size':(100,100),'crop':"smart","upscale":True},
-        'slider':{'size':(1300,600),'crop':"smart","upscale":True}
+        'slider':{'size':(1300,600),'crop':"smart","upscale":True},
+        'category_image':{'size':(300,200),'crop':"smart","upscale":True}
     }
 }
 

@@ -38,7 +38,9 @@ class InlineProduct(CompactInline):
 
 @admin.register(Category)
 class AdminCategory(admin.ModelAdmin):
-    list_display = ["name","description"]
+    list_display = ["image_icon","name","description"]
+    fields = ["image_tag","image","name","description"]
+    readonly_fields = ["image_tag","image_icon"]
     inlines = [InlineProduct]
 
 ### IMAGE

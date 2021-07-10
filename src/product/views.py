@@ -7,7 +7,7 @@ from .models import Category
 # Create your views here.
 def product_list(request):
     categories = Category.objects.filter(product__isnull=False).distinct()
-    category = request.GET.get("category")
+    category = request.GET.get("category",0)
     search = request.GET.get("search")
     if category:
         products = Product.objects.filter(category=category)
@@ -15,7 +15,7 @@ def product_list(request):
         products = Product.objects.all()
     if search:
         products = products.filter(name__contains=search)
-    return render(request,"product/list.html",{"products":products,"categories":categories}) 
+    return render(request,"product/list.html",{"category_id":int(category),"products":products,"categories":categories}) 
 
 def product_detail(request,id):
     product = Product.objects.get(id=id)
