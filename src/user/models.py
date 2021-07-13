@@ -7,7 +7,6 @@ from easy_thumbnails.fields import ThumbnailerImageField
 
 
 class User(AbstractUser):
-    email = models.EmailField(_('email address'), unique=True, blank=True)
     avatar = ThumbnailerImageField(upload_to="avatars", blank=True)
 
 

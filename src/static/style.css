@@ -21,3 +21,9 @@
     margin-top: 1em;
     margin-bottom: 1em;
 }
+
+.alert-custom {
+    z-index: 1;
+    right: 0px;
+    margin: 10px;
+}

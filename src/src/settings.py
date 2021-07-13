@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     "order",
     "user",
     "product",
-    "home"
+    "home",
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -191,3 +192,4 @@ JET_THEMES = [
 
 JET_DEFAULT_THEME = 'light-gray'
 # JET_SIDE_MENU_COMPACT = True
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

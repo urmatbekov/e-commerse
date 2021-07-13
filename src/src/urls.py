@@ -19,6 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from home.views import home
 from product.views import product_list,product_detail
+from user.views import register,authentication,exit
 
 urlpatterns = [
     path('jet/', include('jet.urls', 'jet')),
@@ -26,5 +27,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("product/",product_list,name="product_list"),
     path("product/<int:id>/",product_detail,name="product_detail"),
-    path("",home,name="home_page")
+    path("",home,name="home_page"),
+    path("register/",register,name="register_page"),
+    path("login/",authentication,name="login_page"),
+    path("logout/",exit,name="logout_page")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
