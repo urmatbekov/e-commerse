@@ -2,24 +2,33 @@
 
 {% block container %}
 
-<section>
-    <div class="row mt-4 mb-4">
-        <div class="col-lg-6">
-        <img src="{{variation.image.first.file.product_list.url}}" class="card-img-top" alt="...">
+    <section>
+        <div class="row">
+            <div class="col-8">
+                <div class="row mt-4 mb-4">
+                    <div class="col-lg-6">
+                        <img src="{{variation.image.first.file.product_list.url}}" class="card-img-top" alt="...">
+                    </div>
+                    <div class="col-lg-6">
+                        <h1>{{variation.name}}</h1>
+                        <p>
+                            {{variation.description}} 
+                        </p>
+                        <p class="text-danger fw-bold">
+                        Price: 
+                                            {{variation.sale_price}} c/
+                                            <span class="text-decoration-line-through fw-normal text-muted ">
+                                                {{variation.price}} c</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <h2>It park</h2>
+                <p>lorem</p>
+            </div>
         </div>
-        <div class="col-lg-6">
-            <h1>{{variation.name}}</h1>
-            <p>
-                 {{variation.description}} 
-            </p>
-             <p class="text-danger fw-bold">
-             Price: 
-                                {{variation.sale_price}} c/
-                                <span class="text-decoration-line-through fw-normal text-muted ">
-                                    {{variation.price}} c</span>
-            </p>
-        </div>
-    </div>
+
     <section>
     <h2>Варианты</h2>
     <ul class="row ps-0 ms-0 list-unstyled">
